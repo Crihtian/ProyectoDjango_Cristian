@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if object %}Editar{% else %}Nuevo{% endif %} Post</title>
+    <style>
+        :root {
+            --color-primario: #2c3e50;
+            --color-exito: #27ae60;
+            --color-secundario: #3498db;
+            --sombra: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a4c8d;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .contenedor-formulario {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--sombra);
+            padding: 2rem;
+        }
+
+        .campo-formulario {
+            margin-bottom: 1.5rem;
+        }
+
+        .campo-formulario label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--color-primario);
+            font-weight: bold;
+        }
+
+        .campo-formulario input,
+        .campo-formulario textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            resize: none;
+        }
+
+        .boton-primario {
+            background: var(--color-exito);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .boton-primario:hover {
+            opacity: 0.9;
+        }
+
+        .boton-secundario {
+            background: #95a5a6;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor-formulario">
+        <h1>{% if object %}Editar Post{% else %}Nuevo Post{% endif %}</h1>
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="campo-formulario">
+                <label for="id_title">Título:</label>
+                {{ form.title }}
+            </div>
+            
+            <div class="campo-formulario">
+                <label for="id_content">Contenido:</label>
+                {{ form.content }}
+            </div>
+
+            <button type="submit" class="boton-primario">
+                {% if object %}Guardar Cambios{% else %}Crear Post{% endif %}
+            </button>
+            <button type="button" onclick="history.back()" class="boton-primario boton-secundario">
+                Cancelar
+            </button>
+        </form>
+    </div>
+</body>
+</html>

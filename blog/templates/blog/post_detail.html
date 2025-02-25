@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Post</title>
+    <style>
+        :root {
+            --color-primario: #2c3e50;
+            --color-secundario: #3498db;
+            --color-advertencia: #f1c40f;
+            --color-peligro: #e74c3c;
+            --sombra: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #07b9f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .contenedor-detalle {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgb(255, 255, 255);
+            border-radius: 8px;
+            box-shadow: var(--sombra);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .encabezado-post {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contenido-post {
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            white-space: pre-wrap;
+        }
+
+        .meta-info {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .grupo-botones {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .boton {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .boton:hover {
+            opacity: 0.9;
+        }
+
+        .boton-editar { background: var(--color-advertencia); color: #000; }
+        .boton-eliminar { background: var(--color-peligro); color: white; }
+        .boton-volver { background: var(--color-secundario); color: white; }
+    </style>
+</head>
+<body>
+    <div class="contenedor-detalle">
+        <div class="encabezado-post">
+            <h1>{{ post.title }}</h1>
+            <div class="meta-info">
+                <p>Creado por: {{ post.author }} | Última modificación: {{ post.modified_by|default:"-" }}</p>
+                <p>Publicado: {{ post.published_at|date:"d M Y H:i" }}</p>
+            </div>
+        </div>
+        
+        <div class="contenido-post">
+            {{ post.content }}
+        </div>
+
+        <div class="grupo-botones">
+            <a href="{% url 'post_edit' post.pk %}" class="boton boton-editar">Editar</a>
+            <a href="{% url 'post_delete' post.pk %}" class="boton boton-eliminar">Eliminar</a>
+            <a href="{% url 'post_list' %}" class="boton boton-volver">Volver</a>
+        </div>
+    </div>
+</body>
+</html>
