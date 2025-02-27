@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.post_list, name='post_list'),
-    path('login/', views.login_view, name='login'),
+    path('accounts/login/', views.login_view, name='login'),
     path('logout/', LogoutView.as_view(template_name='blog/logout.html'), name='logout'),
     path('signup/', views.signup_view, name='signup'),  # Nueva ruta para el registro
     path('post/<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),
