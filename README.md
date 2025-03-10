@@ -13,7 +13,7 @@ Un blog básico con autenticación de usuarios y operaciones CRUD para posts.
 
 ## 🛠 Instalación
 ```bash
-git clone [URL_del_repositorio]
+git clone [https://github.com/Crihtian/ProyectoDjango_Cristian]
 cd blog-django
 python -m venv venv
 source venv/bin/activate    # Linux/Mac
