@@ -1,6 +1,8 @@
-from django.urls import path
+from django.urls import path,include
 from django.contrib.auth.views import LogoutView
 from . import views
+from rest_framework.routers import DefaultRouter
+from .views import PostViewSet
 
 urlpatterns = [
     path('posts', views.post_list, name='post_list'),
